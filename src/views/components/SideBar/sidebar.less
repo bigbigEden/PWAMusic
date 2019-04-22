@@ -1,0 +1,42 @@
+.sidebar-wrapper{
+	position:absolute;
+	width: 80vw;
+	z-index:100;
+	top:0;
+	left:0;
+	.sidebar-mask{
+		position: fixed;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    z-index:99;
+	    background: rgba(0,0,0,0.35);
+	}
+	.sidebar-img-wrapper{
+		height:160px;
+		padding-left:15px;
+		width:100%;
+		overflow:auto;
+		.sidebar-img-box{
+			margin-top:40px;
+			width:100%;
+		}
+		.sidebar-img{
+			width:80px;
+			height:80px;
+			border-radius:50%;
+		}
+		.sidebar-img-user{
+			color:white;
+			padding:10px 0;
+			.user-level{
+			    border: 1px solid white;
+			    font-size: 12px;
+			    padding: 0 5px;
+			    margin-left:10px;
+			    border-radius: 40%;
+			}
+		}
+	}
+}
