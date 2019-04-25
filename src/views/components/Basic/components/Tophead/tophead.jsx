@@ -1,6 +1,6 @@
 import React from 'react';
 import './tophead.less';
-import SvgIcon from '../SvgIcon/svgicon.jsx'
+import SvgIcon from '@/views/components/SvgIcon/svgicon.jsx'
 import list from '@/assets/svg/list.svg'
 import music from '@/assets/svg/music.svg'
 import music_2 from '@/assets/svg/music_2.svg'
@@ -12,11 +12,11 @@ class TopHead extends React.Component{
 		super(props)
 	}
 	render(){
-		const {className} = this.props;
+		const {className,toggleSide} = this.props;
 		let head_class = classnames('head-wrapper',className);
 		return(
 			<div className = {head_class}>
-				<div className = 'head-wrapper-left'>
+				<div onClick = {toggleSide} className = 'head-wrapper-left'>
 					<SvgIcon className = 'head-svg' src={list}></SvgIcon>
 				</div>
 				<div className = 'head-wrapper-middle'>

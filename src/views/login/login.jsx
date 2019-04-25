@@ -20,11 +20,17 @@ export default class Login extends React.Component{
 			mobile:'',
 		}
 	}
+	componentWillMount(){
+		let storage = window.localStorage
+		if(storage.getItem('uid') !=null){
+			this.props.history.push('homepage');
+		}
+	}
 	checkLogin(){
 		$fetch.sendData(`/api/login/cellphone?phone=${this.state.mobile}&password=${this.state.password}`)
 		.then((res)=>{
 			let storage = window.localStorage
-			let status = catcherr(res);
+			let status = catcherr(res);	
 			if(status && storage){
 				if(storage.getItem('uid') == null){
 					storage.setItem('uid',res.account.id);

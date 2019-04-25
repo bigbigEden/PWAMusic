@@ -1,3 +1,4 @@
+//这里是单纯的一个用来放Icon的组件
 import React from 'react';
 import ReactSVG from 'react-svg'
 

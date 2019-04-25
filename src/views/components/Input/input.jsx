@@ -1,3 +1,4 @@
+//这里存放表单输入的组件
 import React from 'react';
 import './input.less';
 import SvgIcon from '@/views/components/SvgIcon/svgicon.jsx'

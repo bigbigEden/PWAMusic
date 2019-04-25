@@ -1,6 +1,7 @@
 import React from 'react';
 import './sidebar.less';
 import bg from '@/assets/imgs/sidebar-bg.webp'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import $fetch from '@/api.js'
 import SideBarImg from './components/sidebarimg.jsx'
 class SideBar extends React.Component{
@@ -15,7 +16,6 @@ class SideBar extends React.Component{
 	}
 	componentDidMount(){
 		const uid = window.localStorage.getItem('uid');
-		console.log('test',uid);
 		$fetch.getData(`/api/user/detail?uid=${uid}`)
 		.then((res)=>{
 			this.setState({
@@ -25,7 +25,7 @@ class SideBar extends React.Component{
 		})
 	}
 	render(){
-
+		let {showSide,toggleSide} = this.props
 		const bgStyle = {
 			backgroundSize:'cover',
 			backgroundImage:`url(${bg})`,
@@ -33,13 +33,22 @@ class SideBar extends React.Component{
 			backgroundRepeat:'no-repeat',
 		}
 		return(
-			<div className = 'sidebar-wrapper'>
-				<div className = 'sidebar-mask'></div>
-				<SideBarImg bgStyle = {bgStyle} userInfo = {this.state.userInfo} level = {this.state.level}></SideBarImg>
-				
-			</div>
+			<ReactCSSTransitionGroup 	
+					transitionName="fade" 
+					transitionEnterTimeout={200}
+				    transitionLeaveTimeout={200}>
+					{
+						showSide?
+							<div className = 'sidebar-wrapper-all'>
+								<div className = 'sidebar-wrapper'>
+									<SideBarImg bgStyle = {bgStyle} userInfo = {this.state.userInfo} level = {this.state.level}></SideBarImg>
+								</div>
+								<div onClick = {toggleSide} className = 'sidebar-mask'></div>
+							</div>
+						:''
+					}
+			</ReactCSSTransitionGroup>	
 		)
-
 	}
 }
 export default SideBar
