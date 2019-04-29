@@ -6,16 +6,23 @@ import classnames from 'classnames';
 class SongList extends React.Component{
 	constructor(props){
   		super(props);
+  		this.showList = this.showList.bind(this);
+  		this.state = {
+  			actived:false
+  		}  	
+	}
+	showList(){
+		this.setState({
+			actived:!this.state.actived
+		})
 	}
 	render(){
-		let {className} = this.props;
+		let {className,number} = this.props;
+		
 		const song_class = classnames('songlist-wrapper',className);
-		const title_class = classnames({
-			'actived':this.state.actived
-		})
 		return(
 			<div className = {song_class}>
-				 <ListHead/>
+				 <ListHead number = {number} onClick = {this.showList} actived = {this.state.actived}/>
 			</div>
 		)
 	}

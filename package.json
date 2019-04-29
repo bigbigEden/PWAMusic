@@ -55,7 +55,7 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "scripts": {
-    "dev": "webpack-dev-server --progress --colors --open --mode development  --host 172.33.12.5",
+    "dev": "webpack-dev-server --progress --colors --open --mode development  ",
     "build": "webpack -p --mode production"
   }
 }

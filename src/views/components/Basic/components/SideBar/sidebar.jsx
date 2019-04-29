@@ -33,21 +33,23 @@ class SideBar extends React.Component{
 			backgroundRepeat:'no-repeat',
 		}
 		return(
-			<ReactCSSTransitionGroup 	
-					transitionName="fade" 
-					transitionEnterTimeout={200}
-				    transitionLeaveTimeout={200}>
-					{
-						showSide?
-							<div className = 'sidebar-wrapper-all'>
-								<div className = 'sidebar-wrapper'>
-									<SideBarImg bgStyle = {bgStyle} userInfo = {this.state.userInfo} level = {this.state.level}></SideBarImg>
+			<div id ='sidebar-box'>
+				<ReactCSSTransitionGroup 	
+						transitionName="fade" 
+						transitionEnterTimeout={200}
+					    transitionLeaveTimeout={200}>
+						{
+							showSide?
+								<div className = 'sidebar-wrapper-all'>
+									<div className = 'sidebar-wrapper'>
+										<SideBarImg bgStyle = {bgStyle} userInfo = {this.state.userInfo} level = {this.state.level}></SideBarImg>
+									</div>
+									<div onClick = {toggleSide} className = 'sidebar-mask'></div>
 								</div>
-								<div onClick = {toggleSide} className = 'sidebar-mask'></div>
-							</div>
-						:''
-					}
-			</ReactCSSTransitionGroup>	
+							:''
+						}
+				</ReactCSSTransitionGroup>
+			</div>
 		)
 	}
 }

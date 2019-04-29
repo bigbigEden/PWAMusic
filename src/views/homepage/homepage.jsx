@@ -3,21 +3,23 @@ import './homepage.less'
 import $fetch from '@/api.js'
 import Basic from '@/views/components/Basic/Basic.jsx'
 import SongList from '@/views/components/SongList/songList.jsx'
-export default class HomePage extends React.Component{
+import { connect } from 'react-redux';
+class HomePage extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			creatList:0,//创建的歌单
 			saveList:0,//收藏的歌单
+			
 		}
 	}
 	componentWillMount(){
-		$fetch.getData(`/api/user/subcount`)
+		console.log('finsh',this.props);
+		let storage = window.localStorage
+		let uid = storage.getItem('uid');
+		$fetch.getData(`/api/user/detail?uid=${uid}`)
 		.then((res)=>{
-			this.setState({
-				creatList:res.createdPlaylistCount,
-				saveList:res.subPlaylistCount,
-			})
+
 		})
 	}
 	render(){
@@ -31,3 +33,9 @@ export default class HomePage extends React.Component{
 		)
 	}
 }
+function mapStateToProps(state) {
+  return {
+    user: state
+  }
+}
+export default connect(mapStateToProps)(HomePage)

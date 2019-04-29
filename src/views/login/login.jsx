@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import './login.less'
 import cx from 'classnames';
@@ -7,7 +8,7 @@ import Button from '../components/Button/button.jsx'
 import $fetch from '@/api.js'
 import LoginDetail from './components/logindetail.jsx'
 import catcherr from '@/lib/err.js'
-export default class Login extends React.Component{
+class Login extends React.Component{
 	constructor(props){
 		super(props);
 		this.changeShow = this.changeShow.bind(this);
@@ -23,16 +24,19 @@ export default class Login extends React.Component{
 	componentWillMount(){
 		let storage = window.localStorage
 		if(storage.getItem('uid') !=null){
+			this.props.login();//触发
 			this.props.history.push('homepage');
 		}
 	}
 	checkLogin(){
+
 		$fetch.sendData(`/api/login/cellphone?phone=${this.state.mobile}&password=${this.state.password}`)
 		.then((res)=>{
 			let storage = window.localStorage
 			let status = catcherr(res);	
 			if(status && storage){
 				if(storage.getItem('uid') == null){
+					this.props.login();//触发
 					storage.setItem('uid',res.account.id);
 				}
 				this.props.history.push('/homepage');
@@ -93,7 +97,7 @@ export default class Login extends React.Component{
 		let {loginShow,mobile,password} = this.state;
 		return(		
 			<div id = 'login-page'>
-				<LoginDetail checkLogin = {this.checkLogin} valueChange = {this.valueChange} cancelValue = {this.cancelValue} show = {loginShow} mobile = {mobile} password = {password} changeShow = {this.changeShow}></LoginDetail>
+				<LoginDetail login = {this.props.login} checkLogin = {this.checkLogin} valueChange = {this.valueChange} cancelValue = {this.cancelValue} show = {loginShow} mobile = {mobile} password = {password} changeShow = {this.changeShow}></LoginDetail>
 				<div style = {bgStyle} className = 'login-wrapper'>
 					<div className = 'login-box'>
 						<Button  type = 'normal' onClick = {this.changeShow.bind(this,'show')}>手机号登录</Button>
@@ -103,3 +107,15 @@ export default class Login extends React.Component{
 		)
 	}
 }
+
+function mapStateToProps(state) {
+  return {
+    user: state
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+  	login:() => dispatch({type:'login'})
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

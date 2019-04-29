@@ -1,63 +1,64 @@
-.sidebar-wrapper-all{
-	position: absolute;
-	top:0;
-	left:0;
-	.sidebar-wrapper{
-		position:absolute;
-		width: 80vw;
-		z-index:100;
+#sidebar-box{
+	.sidebar-wrapper-all{
+		position: absolute;
 		top:0;
 		left:0;
-		.sidebar-img-wrapper{
-			height:160px;
-			padding-left:15px;
-			width:100%;
-			overflow:auto;
-			.sidebar-img-box{
-				margin-top:40px;
+		.sidebar-wrapper{
+			position:absolute;
+			width: 80vw;
+			z-index:100;
+			top:0;
+			left:0;
+			.sidebar-img-wrapper{
+				height:160px;
+				padding-left:15px;
 				width:100%;
-			}
-			.sidebar-img{
-				width:80px;
-				height:80px;
-				border-radius:50%;
-			}
-			.sidebar-img-user{
-				color:white;
-				padding:10px 0;
-				.user-level{
-				    border: 1px solid white;
-				    font-size: 12px;
-				    padding: 0 5px;
-				    margin-left:10px;
-				    border-radius: 40%;
+				overflow:auto;
+				.sidebar-img-box{
+					margin-top:40px;
+					width:100%;
+				}
+				.sidebar-img{
+					width:80px;
+					height:80px;
+					border-radius:50%;
+				}
+				.sidebar-img-user{
+					color:white;
+					padding:10px 0;
+					.user-level{
+					    border: 1px solid white;
+					    font-size: 12px;
+					    padding: 0 5px;
+					    margin-left:10px;
+					    border-radius: 40%;
+					}
 				}
 			}
 		}
+		.sidebar-mask{
+			position: fixed;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    z-index:90;
+		    background: rgba(0,0,0,0.35);
+		}
 	}
-	.sidebar-mask{
-		position: fixed;
-	    top: 0;
-	    left: 0;
-	    right: 0;
-	    bottom: 0;
-	    z-index:90;
-	    background: rgba(0,0,0,0.35);
+	.fade-enter{
+		position: absolute;
+		left:-80vw;
 	}
-}
-
-.fade-enter{
-	position: absolute;
-	left:-80vw;
-}
-.fade-enter-active {
-  left:0vw;
-  transition: all .2s ease;
-}
-.fade-leave {
- 	top:0vw;
-}
-.fade-leave.fade-leave-active {
-  left:-80vw;
-  transition: all .2s ease;
+	.fade-enter-active {
+	  left:0vw;
+	  transition: all .2s ease;
+	}
+	.fade-leave {
+	 	top:0vw;
+	}
+	.fade-leave.fade-leave-active {
+	  left:-80vw;
+	  transition: all .2s ease;
+	}
 }
