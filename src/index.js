@@ -4,9 +4,9 @@ import { createStore } from 'redux';
 import { Provider} from 'react-redux';
 import reducer from './store/reducer.js'
 import App from './app.js'
-import VConsole from 'vconsole/dist/vconsole.min.js' //import vconsole
+// import VConsole from 'vconsole/dist/vconsole.min.js' //import vconsole
 import './assets/css/reset.css'
-let vConsole = new VConsole();
+// let vConsole = new VConsole();
 const store = createStore(reducer);
 
 ReactDOM.render(

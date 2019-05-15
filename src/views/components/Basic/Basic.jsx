@@ -16,11 +16,12 @@ export default class Basic extends React.Component{
 		})
 	}
 	render(){
+		let {userInfo,level} = this.props
 		let {showSide} = this.state;
 		return(
 			<div className = 'basic-wrapper'>
 				<TopHead  toggleSide = {this.toggleSidebar}></TopHead>
-				<SideBar toggleSide = {this.toggleSidebar} showSide = {showSide}></SideBar>
+				<SideBar  userInfo = {userInfo} level = {level} toggleSide = {this.toggleSidebar} showSide = {showSide}></SideBar>
 			</div>
 		)
 	}

@@ -8,27 +8,74 @@ class HomePage extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			creatList:0,//创建的歌单
-			saveList:0,//收藏的歌单
-			
+			playList:[[],[]],//歌单总数
+			userInfo:{
+
+			},
+			dataFinsh:false,
+			level:''
 		}
 	}
 	componentWillMount(){
-		console.log('finsh',this.props);
+		this.getUserData();
+	}
+	checkList(list){
+		let creatList = [];
+		let saveList = [];
+		list.map((item,index)=>{
+			this.loadImg(item.coverImgUrl);
+			item.subscribed?creatList.push(item):saveList.push(item);
+		})
+		this.setState({
+			playList:[creatList,saveList]
+		})
+	}
+	loadImg(url){
+		var img = new Image();
+		img.src = url;
+	}
+	getUserData(){
 		let storage = window.localStorage
 		let uid = storage.getItem('uid');
-		$fetch.getData(`/api/user/detail?uid=${uid}`)
-		.then((res)=>{
+		Promise.all([this.getUserDetail(uid),this.getUserPlayList(uid)])
+		.then(()=>{
+			this.setState({
+				dataFinsh:true
+			})
+		})
 
+	}
+	getUserPlayList(uid){
+		return $fetch.getData(`/api/user/playlist?uid=${uid}`)
+		.then((res)=>{
+			this.checkList(res.playlist);
+		})
+	}
+	getUserDetail(uid){
+		return $fetch.getData(`/api/user/detail?uid=${uid}`)
+		.then((res)=>{
+			this.setState({
+				userInfo:res.profile,
+				level:res.level
+			})
 		})
 	}
 	render(){
 		let state = this.state;
+		let creatList = state.playList[1];//创建的歌单
+		let saveList = state.playList[0];//收藏的歌单
 		return(
 				<div id = 'homepage' className = 'homepage'>
-					<Basic/>
-					<SongList number = {state.creatList}></SongList>
-					<SongList number = {state.saveList}></SongList>
+					{
+						state.dataFinsh?
+							<div>
+								<Basic userInfo = {state.userInfo} level = {state.level} />
+								<SongList number = {creatList.length} List = {creatList}></SongList>
+								<SongList number = {saveList.length}  List = {saveList}></SongList>
+							</div>
+						:""
+					}
+
 				</div>
 		)
 	}

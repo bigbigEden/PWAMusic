@@ -1,9 +1,29 @@
 .songlist-wrapper{
+	padding:0 10px;
 	.listhead-wrapper{
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding:5px 0;
+		.listhead-title-box{
+			display: flex;
+			align-items:center;
+			.listhead-title{
+				margin-left:10px;
+				font-size:16px;
+				font-weight:600;
+			}
+			.listhead-number{
+				margin-left:3px;
+				font-size:12px;
+				color:#696060;
+			}
+		}
+		.listhead-point-box{
+			.list-svg{
+
+			}
+		}
 		.listhead-arrow{
 			display: inline-block;
 			transition: all .3s ease;
@@ -16,23 +36,35 @@
 			transform: rotate(270deg);
 		}
 	}
-	.listhead-title-box{
-		display: flex;
-		align-items:center;
-		.listhead-title{
-			margin-left:10px;
-			font-size:16px;
-			font-weight:600;
-		}
-		.listhead-number{
-			margin-left:3px;
-			font-size:12px;
-			color:#696060;
-		}
+	.listbody-wrapperbox{
+		transition: all .3s ease;
+		overflow: hidden;
+		height:0;
 	}
-	.listhead-point-box{
-		.list-svg{
-			margin:0 5px;
+	.listbody-wrapperbox.actived{
+		height: auto;
+	}
+	.listbody-wrapper{
+		display: flex;
+		align-items: center;
+		margin:5px 0;
+		.listbody-imgbox{
+			line-height:0;
+			.listbody-bg{
+				width:50px;
+				height:50px;
+			}
+		}
+		.listbody-titbox{
+			margin:5px 0 0 5px;
+			flex-grow: 1;
+			max-width: calc(100% - 75px);
+			.listbody-tit{
+				line-height:25px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 		}
 	}
 }

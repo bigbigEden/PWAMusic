@@ -23,7 +23,7 @@ class ListHead extends React.Component{
 						<SvgIcon className = 'list-svg' src={left} svgStyle= {{width:20,height:20}}/>
 					</span>
 					<span className = 'listhead-title'>创建的歌单</span>
-					<span className = 'listhead-number'>{number}</span>
+					<span className = 'listhead-number'>({number})</span>
 				</div>
 				<div className = 'listhead-point-box'>
 					<SvgIcon className= 'list-svg' src={add} svgStyle = {{width:20,height:20}}/>

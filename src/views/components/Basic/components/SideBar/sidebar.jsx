@@ -7,25 +7,12 @@ import SideBarImg from './components/sidebarimg.jsx'
 class SideBar extends React.Component{
 	constructor(props){
 		super(props);
-		this.state = {
-			userInfo:{
-
-			},
-			level:''
-		}
 	}
 	componentDidMount(){
-		const uid = window.localStorage.getItem('uid');
-		$fetch.getData(`/api/user/detail?uid=${uid}`)
-		.then((res)=>{
-			this.setState({
-				userInfo:res.profile,
-				level:res.level
-			})
-		})
+
 	}
 	render(){
-		let {showSide,toggleSide} = this.props
+		let {showSide,toggleSide,userInfo,level} = this.props
 		const bgStyle = {
 			backgroundSize:'cover',
 			backgroundImage:`url(${bg})`,
@@ -42,7 +29,7 @@ class SideBar extends React.Component{
 							showSide?
 								<div className = 'sidebar-wrapper-all'>
 									<div className = 'sidebar-wrapper'>
-										<SideBarImg bgStyle = {bgStyle} userInfo = {this.state.userInfo} level = {this.state.level}></SideBarImg>
+										<SideBarImg bgStyle = {bgStyle} userInfo = {userInfo} level = {level}></SideBarImg>
 									</div>
 									<div onClick = {toggleSide} className = 'sidebar-mask'></div>
 								</div>
