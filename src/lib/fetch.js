@@ -37,7 +37,6 @@ class _fetch{
 							})
 						}
 						res = this.checkRes(res,type);
-						console.log(res);
 						resolve(res)
 					}
 					else{
