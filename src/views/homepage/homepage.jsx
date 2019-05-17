@@ -14,7 +14,6 @@ class HomePage extends React.Component{
 		}
 	}
 	componentWillMount(){
-		console.log('finsh',this.props);
 		let storage = window.localStorage
 		let uid = storage.getItem('uid');
 		$fetch.getData(`/api/user/detail?uid=${uid}`)
@@ -38,4 +37,4 @@ function mapStateToProps(state) {
     user: state
   }
 }
-export default connect(mapStateToProps)(HomePage)
+export default connect(mapStateToProps)(HomePage);

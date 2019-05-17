@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import * as actions from '@/store/loginStore/actions.js'
 import {withRouter} from 'react-router-dom';
 import './login.less'
 import cx from 'classnames';
@@ -22,7 +24,7 @@ class Login extends React.Component{
 		}
 	}
 	componentWillMount(){
-		let storage = window.localStorage
+		let storage = window.localStorage;
 		if(storage.getItem('uid') !=null){
 			this.props.login();//触发
 			this.props.history.push('homepage');
@@ -36,8 +38,8 @@ class Login extends React.Component{
 			let status = catcherr(res);	
 			if(status && storage){
 				if(storage.getItem('uid') == null){
-					this.props.login();//触发
 					storage.setItem('uid',res.account.id);
+					this.props.login();//触发存入redux里
 				}
 				this.props.history.push('/homepage');
 			}
@@ -110,12 +112,10 @@ class Login extends React.Component{
 
 function mapStateToProps(state) {
   return {
-    user: state
+    user: state.loginReducer
   }
 }
 function mapDispatchToProps(dispatch) {
-  return {
-  	login:() => dispatch({type:'login'})
-  }
+  return bindActionCreators(actions, dispatch);
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

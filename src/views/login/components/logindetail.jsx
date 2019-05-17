@@ -11,7 +11,6 @@ export default class LoginDetail extends React.Component{
 		super(props)
 	}
 	render(){
-		console.log('detail',this.props);
 		let {changeShow,mobile,password,show} = this.props
 		let {valueChange,cancelValue,checkLogin} = this.props
 		return (
