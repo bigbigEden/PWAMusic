@@ -24,9 +24,11 @@ class Login extends React.Component{
 		}
 	}
 	componentWillMount(){
+		// this.props.login.then(res)=>{
+		// 	console.log('触发了');
+		// }
 		let storage = window.localStorage;
 		if(storage.getItem('uid') !=null){
-			this.props.login();//触发
 			this.props.history.push('homepage');
 		}
 	}
@@ -39,7 +41,9 @@ class Login extends React.Component{
 			if(status && storage){
 				if(storage.getItem('uid') == null){
 					storage.setItem('uid',res.account.id);
-					this.props.login();//触发存入redux里
+					// this.props.login.then(res)=>{
+					// 	console.log('触发了')
+					// };//触发存入redux里
 				}
 				this.props.history.push('/homepage');
 			}
